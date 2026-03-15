@@ -1,0 +1,93 @@
+# =========================
+# Dependencies
+# =========================
+node_modules/
+.pnp
+.pnp.js
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.staging
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =========================
+# Test & coverage
+# =========================
+coverage/
+*.lcov
+.nyc_output/
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+*.pid
+
+# =========================
+# Deployment
+# =========================
+.vercel
+.netlify
+
+# =========================
+# Package manager locks (keep only one)
+# Choose whichever lock file your project uses;
+# uncomment the others to avoid conflicts.
+# =========================
+# yarn.lock
+# pnpm-lock.yaml
+
+# =========================
+# Misc
+# =========================
+*.tgz
+.cache/
+.parcel-cache/
+.turbo/
+.next/
+tmp/
+temp/
