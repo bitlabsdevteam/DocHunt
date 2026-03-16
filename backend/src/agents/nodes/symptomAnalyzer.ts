@@ -38,8 +38,7 @@ export async function symptomAnalyzerNode(
     model: "gpt-4o",
     apiKey: config.openaiApiKey,
     temperature: 0.2,
-    response_format: { type: "json_object" } as { type: "json_object" },
-  });
+  }).bind({ response_format: { type: "json_object" } });
 
   const response = await llm.invoke([
     new SystemMessage(SYMPTOM_SYSTEM_PROMPT),

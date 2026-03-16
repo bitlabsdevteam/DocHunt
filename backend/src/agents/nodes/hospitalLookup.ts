@@ -45,7 +45,9 @@ Prioritize hospitals that match the needed specialty and are currently open. Ret
       }),
     });
 
-    const data = await response.json();
+    const data = (await response.json()) as {
+      choices?: { message?: { content?: string } }[];
+    };
     const content = data.choices?.[0]?.message?.content ?? "[]";
 
     const jsonMatch = content.match(/\[[\s\S]*\]/);

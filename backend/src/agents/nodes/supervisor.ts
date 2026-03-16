@@ -38,8 +38,7 @@ export async function supervisorNode(
     model: "gpt-4o",
     apiKey: config.openaiApiKey,
     temperature: 0,
-    response_format: { type: "json_object" } as { type: "json_object" },
-  });
+  }).bind({ response_format: { type: "json_object" } });
 
   const systemPrompt = SUPERVISOR_SYSTEM_PROMPT
     .replace(

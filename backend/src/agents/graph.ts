@@ -44,7 +44,7 @@ const workflow = new StateGraph(AgentState)
   .addEdge("rag_lookup", "supervisor")
   .addEdge("respond", END);
 
-const app = workflow.compile({ recursionLimit: 10 });
+const app = workflow.compile();
 
 export async function runAgent(
   message: string,
