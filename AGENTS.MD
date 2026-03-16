@@ -58,3 +58,5 @@ All agents should not consider tokens optimisation and deliver best quality of r
 - Lookup agent
 - RAG Agentic agent
 
+## Voice agent
+- Using ElevanLabs

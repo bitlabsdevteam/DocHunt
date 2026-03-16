@@ -59,3 +59,11 @@ These rules are **non-negotiable**:
 
 - **Phase 1** (current): Chat-based hospital/clinic finder.
 - **Phase 2**: Voice agent support — architecture must remain extensible for voice input/output.
+
+
+## User Journey and UI design
+- user register onboard to the plarform
+- User login
+- User interact with a Chat Bot AI Agent for looking up available and closest hospital or clinic. 
+- The Chat Bot will show the Thinking and Reasoning messages
+-  
