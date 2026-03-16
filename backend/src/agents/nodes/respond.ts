@@ -28,6 +28,10 @@ export async function respondNode(
     contextParts.push(`\nSymptom analysis:\n${JSON.stringify(state.symptomAnalysis, null, 2)}`);
   }
 
+  if (state.ragContext?.length) {
+    contextParts.push(`\nRelevant knowledge:\n${state.ragContext.map((r) => r.content).join("\n---\n")}`);
+  }
+
   if (state.searchResults?.length) {
     contextParts.push(`\nHospital search results:\n${JSON.stringify(state.searchResults, null, 2)}`);
   } else if (state.symptomAnalysis?.needsHospitalSearch) {

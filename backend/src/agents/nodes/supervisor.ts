@@ -10,22 +10,26 @@ Your role is to analyze the current conversation state and decide which sub-agen
 You have access to these sub-agents:
 - "symptom_analyzer": Analyzes the patient's symptoms, determines urgency, and recommends a specialty.
 - "hospital_lookup": Searches for nearby available hospitals/clinics based on the symptom analysis.
+- "rag_lookup": Retrieves relevant medical knowledge, procedures, insurance info, or healthcare guidance from the knowledge base.
 - "respond": Composes a final helpful response to the user.
 
 Current state:
 - symptomAnalysis: {{SYMPTOM_ANALYSIS}}
 - searchResults: {{SEARCH_RESULTS}}
+- ragContext: {{RAG_CONTEXT}}
 
 Decision rules:
 1. If the user's message is a greeting, general question, or does not describe any symptoms → "respond"
 2. If the user describes symptoms but no symptom analysis exists yet → "symptom_analyzer"
 3. If symptom analysis exists AND needsHospitalSearch is true AND no search results exist → "hospital_lookup"
-4. If search results already exist OR symptom analysis says needsHospitalSearch is false → "respond"
+4. If the user asks about medical procedures, specialties, insurance, or general healthcare guidance in Japan AND no ragContext exists → "rag_lookup"
+5. If search results already exist OR symptom analysis says needsHospitalSearch is false → "respond"
+6. If ragContext already exists → "respond"
 
 NEVER ask for personal information, payment details, or credit card numbers.
 
 Respond with ONLY a JSON object:
-{"nextAgent": "symptom_analyzer" | "hospital_lookup" | "respond"}`;
+{"nextAgent": "symptom_analyzer" | "hospital_lookup" | "rag_lookup" | "respond"}`;
 
 export async function supervisorNode(
   state: typeof AgentState.State,
@@ -45,6 +49,10 @@ export async function supervisorNode(
     .replace(
       "{{SEARCH_RESULTS}}",
       state.searchResults?.length ? `${state.searchResults.length} results found` : "none",
+    )
+    .replace(
+      "{{RAG_CONTEXT}}",
+      state.ragContext?.length ? `${state.ragContext.length} documents retrieved` : "none",
     );
 
   const response = await llm.invoke([
@@ -57,7 +65,7 @@ export async function supervisorNode(
 
   try {
     const parsed = JSON.parse(content);
-    const valid = ["symptom_analyzer", "hospital_lookup", "respond", "end"];
+    const valid = ["symptom_analyzer", "hospital_lookup", "rag_lookup", "respond", "end"];
     const next = valid.includes(parsed.nextAgent) ? parsed.nextAgent : "respond";
     return { nextAgent: next };
   } catch {

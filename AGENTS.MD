@@ -9,6 +9,7 @@ Before major work, check these files if they exist:
 2. `TDD.md` — technical design
 3. `TASK.md` — current task
 4. `MEMORY.md` — durable project decisions
+5. 
 
 If files conflict:
 - `TASK.md` overrides current execution details
@@ -48,3 +49,12 @@ When reporting work:
 - say what changed
 - say what remains
 - say any blockers clearly
+
+
+## Agents architecture design
+All agents should not consider tokens optimisation and deliver best quality of result. The Supervisor will  be the main output.
+- Supervisor agent
+- Analyse agent
+- Lookup agent
+- RAG Agentic agent
+

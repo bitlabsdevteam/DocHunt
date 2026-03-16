@@ -28,7 +28,21 @@ Hospitals and Clinics lookup agent - (openAI, Gemini, Antropic, KIMI K2)
 ## Agents
 Main Agent - Analyse the user input and assing tasks to sub-agents and review and ouput the final result to user
 Symtpom agent - Response to analyse the patient's symptom to summary it and decide what hospital or clinic to book.
-Look up agent - Response to look up the nearest and available hospital whose approriately according to the symptom. The Look up agent will intelligently communicate with the hospital and clinic to mention the current situation and urgency. 
+Look up agent - Response to look up the nearest and available hospital whose approriately according to the symptom. The Look up agent will intelligently communicate with the hospital and clinic to mention the current situation and urgency. GoogleMaps Integration
 
+## Database Schema Design
+User table 
+- username 
+- email 
+- password
+- 2FA
+- Full name
+- created date
 
+Embedding table
+- To store Agentic Rag embedding data
+
+## Docker componse file and dockerisation design
+- Fronent Service
+- Backend Service
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working in this repository.
 
 ## Important
 
-Read **PRD.md** and **TDD.md** before making any changes. They define what to build and how to test it.
+Read **PRD.md**,**AGENTS.MD**, and **TDD.md** before making any changes. They define what to build and how to test it.
 
 ## Guardrails for Code Generation
 

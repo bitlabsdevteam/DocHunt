@@ -12,7 +12,7 @@ export const AgentState = Annotation.Root({
     default: () => false,
   }),
   nextAgent: Annotation<
-    "symptom_analyzer" | "hospital_lookup" | "respond" | "end"
+    "symptom_analyzer" | "hospital_lookup" | "rag_lookup" | "respond" | "end"
   >({
     reducer: (_prev, next) => next,
     default: () => "end" as const,
@@ -22,6 +22,10 @@ export const AgentState = Annotation.Root({
     default: () => null,
   }),
   searchResults: Annotation<SearchResult[] | null>({
+    reducer: (_prev, next) => next,
+    default: () => null,
+  }),
+  ragContext: Annotation<RagContext[] | null>({
     reducer: (_prev, next) => next,
     default: () => null,
   }),
@@ -47,4 +51,10 @@ export interface SearchResult {
   specialty?: string;
   availability?: string;
   distance?: string;
+}
+
+export interface RagContext {
+  content: string;
+  source: string | null;
+  similarity: number;
 }
